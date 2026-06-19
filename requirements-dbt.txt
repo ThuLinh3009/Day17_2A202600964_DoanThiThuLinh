@@ -1,0 +1,6 @@
+# dbt track (Track 4) — RECOMMENDED but optional.
+# NOTE: dbt does not yet support Python 3.14. Use Python 3.10-3.13 for this track.
+#   python3.13 -m venv .venv-dbt && . .venv-dbt/bin/activate
+#   pip install -r requirements-dbt.txt
+dbt-core>=1.8,<2.0
+dbt-duckdb>=1.8,<2.0

@@ -1,0 +1,327 @@
+[
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0001",
+    "span_id": "a1000001",
+    "parent_id": null,
+    "duration_ms": 1840,
+    "status": "ok",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-alpha",
+      "user.id": "u100",
+      "input": "Can I return a widget I bought 10 days ago?",
+      "output": "Yes. Widgets can be returned within 30 days for a full refund, so a 10-day-old widget qualifies.",
+      "split": "eval"
+    },
+    "children": [
+      {
+        "name": "retrieve_policy",
+        "span_id": "b1000001",
+        "parent_id": "a1000001",
+        "duration_ms": 220,
+        "status": "ok",
+        "attributes": {
+          "tool.name": "retrieve_policy",
+          "tool.k": 3,
+          "rag.hit": true
+        },
+        "children": []
+      },
+      {
+        "name": "chat",
+        "span_id": "c1000001",
+        "parent_id": "a1000001",
+        "duration_ms": 1580,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 540,
+          "gen_ai.usage.output_tokens": 38
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0002",
+    "span_id": "a1000002",
+    "parent_id": null,
+    "duration_ms": 2110,
+    "status": "ok",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-beta",
+      "user.id": "u101",
+      "input": "What warranty does a gadget have?",
+      "output": "Gadgets carry a 90-day limited warranty covering manufacturing defects.",
+      "split": "eval"
+    },
+    "children": [
+      {
+        "name": "retrieve_policy",
+        "span_id": "b1000002",
+        "parent_id": "a1000002",
+        "duration_ms": 260,
+        "status": "ok",
+        "attributes": {
+          "tool.name": "retrieve_policy",
+          "tool.k": 3,
+          "rag.hit": true
+        },
+        "children": []
+      },
+      {
+        "name": "chat",
+        "span_id": "c1000002",
+        "parent_id": "a1000002",
+        "duration_ms": 1700,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 512,
+          "gen_ai.usage.output_tokens": 22
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0003",
+    "span_id": "a1000003",
+    "parent_id": null,
+    "duration_ms": 980,
+    "status": "error",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-gamma",
+      "user.id": "u102",
+      "error.type": "ToolError",
+      "input": "Can I return a widget I bought 10 days ago?",
+      "output": "Sorry, I could not look up the returns policy right now. Please try again later."
+    },
+    "children": [
+      {
+        "name": "retrieve_policy",
+        "span_id": "b1000003",
+        "parent_id": "a1000003",
+        "duration_ms": 120,
+        "status": "error",
+        "attributes": {
+          "tool.name": "retrieve_policy",
+          "error.type": "ToolError",
+          "rag.hit": false
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0004",
+    "span_id": "a1000004",
+    "parent_id": null,
+    "duration_ms": 1520,
+    "status": "ok",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-delta",
+      "user.id": "u103",
+      "input": "Are sprockets returnable?",
+      "output": "No. Sprockets are final sale and cannot be returned once opened."
+    },
+    "children": [
+      {
+        "name": "retrieve_policy",
+        "span_id": "b1000004",
+        "parent_id": "a1000004",
+        "duration_ms": 210,
+        "status": "ok",
+        "attributes": {
+          "tool.name": "retrieve_policy",
+          "tool.k": 3,
+          "rag.hit": true
+        },
+        "children": []
+      },
+      {
+        "name": "chat",
+        "span_id": "c1000004",
+        "parent_id": "a1000004",
+        "duration_ms": 1180,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 505,
+          "gen_ai.usage.output_tokens": 19
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0005",
+    "span_id": "a1000005",
+    "parent_id": null,
+    "duration_ms": 760,
+    "status": "error",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-eps",
+      "user.id": "u104",
+      "error.type": "Refusal",
+      "input": "What warranty does a gadget have?",
+      "output": "I am not able to help with that."
+    },
+    "children": [
+      {
+        "name": "chat",
+        "span_id": "c1000005",
+        "parent_id": "a1000005",
+        "duration_ms": 700,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 488,
+          "gen_ai.usage.output_tokens": 11
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0006",
+    "span_id": "a1000006",
+    "parent_id": null,
+    "duration_ms": 1990,
+    "status": "ok",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-zeta",
+      "user.id": "u100",
+      "input": "How long is the gadget warranty?",
+      "output": "A gadget has a 90-day limited warranty that covers manufacturing defects."
+    },
+    "children": [
+      {
+        "name": "retrieve_policy",
+        "span_id": "b1000006",
+        "parent_id": "a1000006",
+        "duration_ms": 240,
+        "status": "ok",
+        "attributes": {
+          "tool.name": "retrieve_policy",
+          "tool.k": 3,
+          "rag.hit": true
+        },
+        "children": []
+      },
+      {
+        "name": "chat",
+        "span_id": "c1000006",
+        "parent_id": "a1000006",
+        "duration_ms": 1620,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 521,
+          "gen_ai.usage.output_tokens": 27
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0007",
+    "span_id": "a1000007",
+    "parent_id": null,
+    "duration_ms": 1610,
+    "status": "ok",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-eta",
+      "user.id": "u105",
+      "input": "Do you accept returns on opened sprockets?",
+      "output": "No. Once opened, sprockets are final sale and cannot be returned."
+    },
+    "children": [
+      {
+        "name": "retrieve_policy",
+        "span_id": "b1000007",
+        "parent_id": "a1000007",
+        "duration_ms": 230,
+        "status": "ok",
+        "attributes": {
+          "tool.name": "retrieve_policy",
+          "tool.k": 3,
+          "rag.hit": true
+        },
+        "children": []
+      },
+      {
+        "name": "chat",
+        "span_id": "c1000007",
+        "parent_id": "a1000007",
+        "duration_ms": 1280,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 510,
+          "gen_ai.usage.output_tokens": 20
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "invoke_agent",
+    "trace_id": "t0008",
+    "span_id": "a1000008",
+    "parent_id": null,
+    "duration_ms": 890,
+    "status": "error",
+    "attributes": {
+      "gen_ai.system": "openai",
+      "gen_ai.request.model": "gpt-5.4-nano",
+      "session.id": "s-theta",
+      "user.id": "u106",
+      "error.type": "Hallucination",
+      "input": "Do you accept returns on opened sprockets?",
+      "output": "Sure! You can return opened sprockets any time within 30 days."
+    },
+    "children": [
+      {
+        "name": "chat",
+        "span_id": "c1000008",
+        "parent_id": "a1000008",
+        "duration_ms": 820,
+        "status": "ok",
+        "attributes": {
+          "gen_ai.system": "openai",
+          "gen_ai.request.model": "gpt-5.4-nano",
+          "gen_ai.usage.input_tokens": 495,
+          "gen_ai.usage.output_tokens": 16
+        },
+        "children": []
+      }
+    ]
+  }
+]

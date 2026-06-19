@@ -1,0 +1,9 @@
+version: 2
+models:
+  - name: gold_daily_orders
+    description: Daily completed-order aggregates.
+    columns:
+      - name: order_date
+        data_tests: [not_null, unique]
+      - name: revenue
+        data_tests: [not_null]

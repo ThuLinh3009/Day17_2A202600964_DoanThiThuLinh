@@ -1,0 +1,28 @@
+# Optional bonus stack — REAL Airflow 3 + Redpanda (Kafka API), no managed cloud.
+# Lite path needs none of this; use it only to see the production shape.
+#   docker compose -f docker/docker-compose.yml up
+services:
+  redpanda:
+    image: redpandadata/redpanda:v24.2.7
+    command:
+      - redpanda start
+      - --overprovisioned
+      - --smp 1
+      - --memory 1G
+      - --kafka-addr PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr PLAINTEXT://redpanda:9092
+    ports: ["9092:9092"]
+
+  airflow:
+    image: apache/airflow:3.0.2
+    depends_on: [redpanda]
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ../pipeline:/opt/airflow/dags/pipeline
+      - ../data:/opt/airflow/data
+    ports: ["8080:8080"]
+    command: standalone

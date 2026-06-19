@@ -1,0 +1,25 @@
+name: day17_pipeline
+version: "1.0.0"
+config-version: 2
+profile: day17
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+
+models:
+  day17_pipeline:
+    staging:
+      +materialized: view
+    gold:
+      +materialized: table
+
+seeds:
+  day17_pipeline:
+    raw_orders:
+      +column_types:
+        order_id: varchar
+        user_id: varchar
+        product: varchar
+        amount: varchar
+        status: varchar
+        created_at: varchar

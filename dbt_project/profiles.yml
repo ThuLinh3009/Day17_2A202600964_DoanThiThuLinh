@@ -1,0 +1,8 @@
+# Local DuckDB profile — no warehouse, no credentials, no key.
+day17:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dbt.duckdb
+      threads: 1

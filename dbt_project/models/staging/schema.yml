@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: stg_orders
+    description: Cleaned, typed, deduplicated orders (Silver layer).
+    columns:
+      - name: order_id
+        description: Natural key, unique after dedup.
+        data_tests: [not_null, unique]
+      - name: user_id
+        data_tests: [not_null]
+      - name: amount
+        data_tests:
+          - not_null
+unit_tests:
+  - name: stg_orders_dedups_on_order_id
+    description: Duplicate raw rows collapse to one, keeping the latest created_at.
+    model: stg_orders
+    given:
+      - input: ref('raw_orders')
+        rows:
+          - {order_id: "1", user_id: "u1", product: "w", amount: "10.0", status: "completed", created_at: "2026-01-01"}
+          - {order_id: "1", user_id: "u1", product: "w", amount: "10.0", status: "completed", created_at: "2026-01-02"}
+          - {order_id: "2", user_id: "u2", product: "g", amount: "20.0", status: "completed", created_at: "2026-01-01"}
+    expect:
+      rows:
+        - {order_id: 1, user_id: "u1", product: "w", amount: 10.0, status: "completed", created_at: "2026-01-02"}
+        - {order_id: 2, user_id: "u2", product: "g", amount: 20.0, status: "completed", created_at: "2026-01-01"}
